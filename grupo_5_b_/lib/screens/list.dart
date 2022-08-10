@@ -24,6 +24,13 @@ class RequestListScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0), child: const Text('Solicitudes'))
           ],
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.home),
+            // tooltip: 'Comment Icon',
+            onPressed: () {Navigator.pushNamed(context, 'home');},
+          ), 
+        ],
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => SizedBox(

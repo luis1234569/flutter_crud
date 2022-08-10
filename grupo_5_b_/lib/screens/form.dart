@@ -48,9 +48,16 @@ class FormScreen extends StatelessWidget {
               height: 32,
             ),
             Container(
-                padding: const EdgeInsets.all(8.0), child: const Text('Formulario'))
+                padding: const EdgeInsets.all(8.0), child: const Text('Formulario')),
           ],
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.home),
+            // tooltip: 'Comment Icon',
+            onPressed: () {Navigator.pushNamed(context, 'home');},
+          ), 
+        ], 
       ),
       body: SingleChildScrollView(
         child: Padding(
