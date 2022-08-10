@@ -1,7 +1,8 @@
 package yavirac.movilapp.Request;
 
 
-import java.sql.Timestamp;
+import java.sql.Date;
+// import java.sql.Timestamp;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -21,7 +22,7 @@ public class Request {
     private String reason;
     private String description;
     private String phonecontact;
-    private Timestamp registerdate;
+    private Date registerdate;
     private int scorereply;
     private boolean active;
 

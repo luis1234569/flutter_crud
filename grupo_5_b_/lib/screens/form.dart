@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grupo_5_b_/models/request_model.dart';
 import 'package:grupo_5_b_/providers/providers.dart';
-import 'package:grupo_5_b_/screens/screens.dart';
+// import 'package:grupo_5_b_/screens/screens.dart';
 import 'package:grupo_5_b_/themes/theme.dart';
 import 'package:grupo_5_b_/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -26,11 +26,13 @@ class FormScreen extends StatelessWidget {
     final Map < String, dynamic > myFormValues = {
       "id": request?.id.toString() ?? "0",
       'name': request?.name.toString() ?? "",
+      'dni': request?.dni.toString() ?? "",
       'reason': request?.reason.toString() ?? "",
       'description': request?.description.toString() ?? "",
-      'type': request?.type.toString() ?? "",
+      'type': request?.type.toString() ?? "SIAU",
       'registerdate': request?.registerdate.toString() ?? "",
-      'career': request?.career.toString() ?? "",
+      'career': request?.career.toString() ?? "Software",
+      'phonecontact': request?.phonecontact.toString() ?? "",
       'scorereply': request?.scorereply ?? 1,
       'active': request?.active ?? false,
     };
@@ -83,22 +85,21 @@ class FormScreen extends StatelessWidget {
                   icon: Icons.connect_without_contact_rounded,
                 ),
                 CustomInputField(
-                  formProperty: 'type',
+                  formProperty: 'dni',
                   formValues: myFormValues,
-                  labelText: 'Tipo',
-                  hintText: 'Inserte el tipo de Documento',
-                  helperText: 'solo mayusculas',
-                  initialText: myFormValues["type"],
-                  icon: Icons.description,
-                  // keyboardType: TextInputType.emailAddress,
+                  labelText: 'Cedula',
+                  hintText: 'Inserte la cedula',
+                  helperText: '',
+                  initialText: myFormValues["dni"],
+                  icon: Icons.perm_identity
                 ),
                 CustomInputField(
-                  formProperty: 'career',
+                  formProperty: 'phonecontact',
                   formValues: myFormValues,
-                  labelText: 'Carrera',
-                  hintText: 'Insertar carrera',
-                  helperText: 'solo letras',
-                  initialText: myFormValues["career"],
+                  labelText: 'Contacto',
+                  hintText: 'Insertar telefono de contacto',
+                  helperText: '',
+                  initialText: myFormValues["phonecontact"],
                   icon: Icons.card_travel_outlined),
 
                 CustomInputField(
@@ -114,6 +115,30 @@ class FormScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
                   child: Column(
                     children: [
+                      DropdownButtonFormField < String > (
+
+                        icon: const Icon(Icons.card_travel_outlined,color: AppTheme.primary,),
+                          items: const [
+                            DropdownMenuItem(value: 'Software', child: Text('Desarrollo de software')),
+                            DropdownMenuItem(value: 'Agronomia', child: Text('Agronomia')),
+                          ],
+                          value: myFormValues["career"],
+                          onChanged: (value) {
+                            myFormValues['career'] = value;
+                          }),
+                          const SizedBox(height: 9.7),
+                      DropdownButtonFormField < String > (
+
+                        icon: const Icon(Icons.description,color: AppTheme.primary,),
+                          items: const [
+                            DropdownMenuItem(value: 'SIAU', child: Text('SIAU')),
+                            DropdownMenuItem(value: 'SIGA', child: Text('SIGA')),
+                          ],
+                          value: myFormValues["type"],
+                          onChanged: (value) {
+                            myFormValues['type'] = value;
+                          }),
+                          const SizedBox(height: 9.7),
                       DropdownButtonFormField < bool > (
 
                         icon: const Icon(Icons.disc_full_outlined,color: AppTheme.primary,),
@@ -129,10 +154,10 @@ class FormScreen extends StatelessWidget {
                         DropdownButtonFormField < int > (
                           icon: const Icon(Icons.local_activity, color: AppTheme.primary,),
                             items: const [
-                              DropdownMenuItem(value: 1, child: Text('Excelente')),
-                              DropdownMenuItem(value: 2, child: Text('Bien')),
-                              DropdownMenuItem(value: 3, child: Text('Mal')),
-                              DropdownMenuItem(value: 4, child: Text('Muy mal')),
+                              DropdownMenuItem(value: 4, child: Text('Excelente')),
+                              DropdownMenuItem(value: 3, child: Text('Bien')),
+                              DropdownMenuItem(value: 2, child: Text('Mal')),
+                              DropdownMenuItem(value: 1, child: Text('Muy mal')),
                             ],
                             value: myFormValues["scorereply"],
                             onChanged: (value) {
