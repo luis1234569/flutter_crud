@@ -55,11 +55,11 @@ class CustomInputField extends StatelessWidget {
             helperText: helperText,
             suffixIcon: Icon(
               suffixIcon,
-              color: AppTheme.primary,
+              color: AppTheme.icon,
             ),
             icon: Icon(
               icon,
-              color: AppTheme.primary,
+              color: AppTheme.icon,
             ),
           ),
         ),

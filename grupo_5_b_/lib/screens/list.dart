@@ -22,50 +22,59 @@ class RequestListScreen extends StatelessWidget {
               height: 32,
             ),
             Container(
-                padding: const EdgeInsets.all(8.0), child: const Text('Solicitudes'))
+                padding: const EdgeInsets.all(8.0),
+                child: const Text('Solicitudes'))
           ],
         ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.home),
             // tooltip: 'Comment Icon',
-            onPressed: () {Navigator.pushNamed(context, 'home');},
-          ), 
+            onPressed: () {
+              Navigator.pushNamed(context, 'home');
+            },
+          ),
         ],
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => SizedBox(
-            height:125,
-            child: Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-             color: const Color.fromARGB(255, 157, 244, 244), 
-            margin: const EdgeInsets.all(5),
-            elevation: 10,
-              child: ListTile(
-                    leading: const Icon(Icons.document_scanner, color: AppTheme.primary),
-                    title: Text('Solicitante: ${requestsProvider.requests[index].name}'),
+                height: 100,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7)),
+                  color: const Color.fromARGB(228, 178, 214, 236),
+                  margin: const EdgeInsets.all(5),
+                  elevation: 10,
+                  child: ListTile(
+                    leading: const Icon(Icons.document_scanner,
+                        color: AppTheme.icon),
+                    title: Text(
+                        'Solicitante: ${requestsProvider.requests[index].name}'),
                     subtitle: ListView(
                       children: [
-                        Text('Razon: ${requestsProvider.requests[index].reason}'),
+                        Text(
+                            'Razon: ${requestsProvider.requests[index].reason}'),
                         RatingBar.builder(
-                        initialRating: requestsProvider.requests[index].scorereply!.toDouble(),
-                        minRating: 0,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 4,
-                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
+                          initialRating: requestsProvider
+                              .requests[index].scorereply!
+                              .toDouble(),
+                          minRating: 0,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 4,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
                         ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
                       ],
                     ),
                     onTap: () {
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -75,8 +84,8 @@ class RequestListScreen extends StatelessWidget {
                     },
                     trailing: const Icon(Icons.arrow_circle_right_outlined),
                   ),
-            ),
-          ),
+                ),
+              ),
           separatorBuilder: (_, __) => const Divider(),
           itemCount: requestsProvider.requests.length),
       floatingActionButton: FloatingActionButton(
