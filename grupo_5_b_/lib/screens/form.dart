@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grupo_5_b_/models/request_model.dart';
 import 'package:grupo_5_b_/providers/providers.dart';
-// import 'package:grupo_5_b_/screens/screens.dart';
 import 'package:grupo_5_b_/themes/theme.dart';
 import 'package:grupo_5_b_/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +15,6 @@ class FormScreen extends StatelessWidget {
   Request? request;
 
   final _formKey = GlobalKey < FormState > ();
-
-  Widget _showToast() {
-    return const SnackBar(content: Text("Solicitud registrada"));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,9 +156,9 @@ class FormScreen extends StatelessWidget {
                       const Text('Calificación'),
                       RatingBar.builder(
                         initialRating: myFormValues["scorereply"],
-                        minRating: 1,
+                        minRating: 0,
                         direction: Axis.horizontal,
-                        allowHalfRating: true,
+                        allowHalfRating: false,
                         itemCount: 4,
                         itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                         itemBuilder: (context, _) => const Icon(
@@ -177,28 +171,28 @@ class FormScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 9.7),
                        FloatingActionButton(
-                  child: const Text('Save'),
-                  onPressed: () {
-                    // setState(){};
-                    Navigator.pushNamed(
-                      context,
-                      'home',
-                    );
-                    if (myFormValues["id"] != "0") {
-                      requestProvider.updateRequest(myFormValues);
-                      const snackBar = SnackBar(
-                        content: Text('Solicitud Actualizada'),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    } else {
-                      requestProvider.createRequest(myFormValues);
-                      const snackBar = SnackBar(
-                        content: Text('Solicitud Registrada'),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
-                  )
+                        child: const Text('Save'),
+                        onPressed: () {
+                          // setState(){};
+                          Navigator.pushNamed(
+                            context,
+                            'home',
+                          );
+                          if (myFormValues["id"] != "0") {
+                            requestProvider.updateRequest(myFormValues);
+                            const snackBar = SnackBar(
+                              content: Text('Solicitud Actualizada'),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          } else {
+                            requestProvider.createRequest(myFormValues);
+                            const snackBar = SnackBar(
+                              content: Text('Solicitud Registrada'),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),

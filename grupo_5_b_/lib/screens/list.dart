@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:grupo_5_b_/providers/providers.dart';
 import 'package:grupo_5_b_/screens/form.dart';
 import 'package:grupo_5_b_/themes/theme.dart';
@@ -34,7 +35,7 @@ class RequestListScreen extends StatelessWidget {
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => SizedBox(
-            height:100,
+            height:125,
             child: Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
              color: const Color.fromARGB(255, 157, 244, 244), 
@@ -43,11 +44,27 @@ class RequestListScreen extends StatelessWidget {
               child: ListTile(
                     leading: const Icon(Icons.document_scanner, color: AppTheme.primary),
                     title: Text('Solicitante: ${requestsProvider.requests[index].name}'),
-                    subtitle: Text('Razon: ${requestsProvider.requests[index].reason}'),
+                    subtitle: ListView(
+                      children: [
+                        Text('Razon: ${requestsProvider.requests[index].reason}'),
+                        RatingBar.builder(
+                        initialRating: requestsProvider.requests[index].scorereply!.toDouble(),
+                        minRating: 0,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 4,
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                      ),
+                      ],
+                    ),
                     onTap: () {
-                      // requestsProvider.selectedRequest =
-                      //     requestsProvider.requests[index];
-                      // Navigator.pushNamed(context, 'request-form');
 
                       Navigator.push(
                           context,
