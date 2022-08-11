@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grupo_5_b_/models/request_model.dart';
 import 'package:grupo_5_b_/providers/providers.dart';
@@ -13,7 +14,7 @@ class FormScreen extends StatelessWidget {
     this.request
   });
 
-  Request ? request;
+  Request? request;
 
   final _formKey = GlobalKey < FormState > ();
 
@@ -158,28 +159,30 @@ class FormScreen extends StatelessWidget {
                             myFormValues['active'] = value;
                           }),
                       const SizedBox(height: 9.7),
-                        DropdownButtonFormField < int > (
-                          icon: const Icon(Icons.local_activity, color: AppTheme.primary,),
-                            items: const [
-                              DropdownMenuItem(value: 4, child: Text('Excelente')),
-                              DropdownMenuItem(value: 3, child: Text('Bien')),
-                              DropdownMenuItem(value: 2, child: Text('Mal')),
-                              DropdownMenuItem(value: 1, child: Text('Muy mal')),
-                            ],
-                            value: myFormValues["scorereply"],
-                            onChanged: (value) {
-                              myFormValues['scorereply'] = value;
-                            }),
-                            const SizedBox(height: 9.7),
-                    ],
-                  ),
-                ),
-
-                FloatingActionButton(
+                      const Text('Calificación'),
+                      RatingBar.builder(
+                        initialRating: myFormValues["scorereply"],
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 4,
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          myFormValues['scorereply'] =rating;
+                        },
+                      ),
+                      const SizedBox(height: 9.7),
+                       FloatingActionButton(
+                  child: const Text('Save'),
                   onPressed: () {
+                    // setState(){};
                     Navigator.pushNamed(
                       context,
-                      'request-list',
+                      'home',
                     );
                     if (myFormValues["id"] != "0") {
                       requestProvider.updateRequest(myFormValues);
@@ -195,8 +198,10 @@ class FormScreen extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
                   },
-                  child: const Icon(Icons.save))
-                // const SizedBox(height: 9.7),
+                  )
+                    ],
+                  ),
+                ),
               ]),
             ),
         ),

@@ -1,6 +1,6 @@
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:grupo_5_b_/routes/routes.dart';
+// import 'package:grupo_5_b_/routes/routes.dart';
 import 'package:grupo_5_b_/themes/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final menuOptions = AppRoutes.menuOptions;
+    // final menuOptions = AppRoutes.menuOptions;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -35,19 +35,19 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 5,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset: const Offset(0, 3), // changes position of shadow
                         )
                       ],
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       border: Border.all(
                           color: const Color.fromARGB(255, 107, 106, 106))),
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: SizedBox(
                     width: 190,
                     child: Column(
@@ -85,19 +85,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
 
-    // body: Padding(
-    //   padding: const EdgeInsets.all(15.0),
-    //   child: ListView.separated(
-    //       itemBuilder: (context, index) => ListTile(
-    //             leading:
-    //                 Icon(menuOptions[index].icon, color: AppTheme.primary),
-    //             title: Text(menuOptions[index].name),
-    //             onTap: () {
-    //               Navigator.pushNamed(context, menuOptions[index].route);
-    //             },
-    //           ),
-    //       separatorBuilder: (_, __) => const Divider(),
-    //       itemCount: menuOptions.length),
-    // ),
+
   }
 }
