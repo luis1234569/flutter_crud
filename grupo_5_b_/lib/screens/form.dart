@@ -8,76 +8,76 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class FormScreen extends StatelessWidget {
-  FormScreen({
-    super.key,
-    this.request
-  });
+  FormScreen({super.key, this.request});
 
   Request? request;
 
-  final _formKey = GlobalKey < FormState > ();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final Map < String, dynamic > myFormValues = {
+    final Map<String, dynamic> myFormValues = {
       "id": request?.id.toString() ?? "0",
       'name': request?.name.toString() ?? "",
       'dni': request?.dni.toString() ?? "",
       'reason': request?.reason.toString() ?? "",
       'description': request?.description.toString() ?? "",
-      'type': request?.type.toString() ?? "SIAU",
+      'type': request?.type.toString() ?? "tipo",
       'registerdate': request?.registerdate.toString() ?? "",
-      'career': request?.career.toString() ?? "Software",
+      'career': request?.career.toString() ?? "carrera",
       'phonecontact': request?.phonecontact.toString() ?? "",
       'scorereply': request?.scorereply ?? 0,
       'active': request?.active ?? false,
     };
-    final requestProvider = Provider.of < RequestsProvider > (context);
+    final requestProvider = Provider.of<RequestsProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'images/Logot2.png',
-              fit: BoxFit.contain,
-              height: 32,
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'images/Logot2.png',
+                fit: BoxFit.contain,
+                height: 32,
+              ),
+              Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text('Formulario')),
+            ],
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.home),
+              // tooltip: 'Comment Icon',
+              onPressed: () {
+                Navigator.pushNamed(context, 'home');
+              },
             ),
-            Container(
-                padding: const EdgeInsets.all(8.0), child: const Text('Formulario')),
           ],
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.home),
-            // tooltip: 'Comment Icon',
-            onPressed: () {Navigator.pushNamed(context, 'home');},
-          ), 
-        ], 
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             child: Form(
               key: _formKey,
               child: Column(children: [
                 CustomInputField(
-                  formProperty: 'name',
-                  formValues: myFormValues,
-                  labelText: 'Solicitante',
-                  hintText: 'Insertar su nombre',
-                  helperText: 'Solo mayusculas',
-                  initialText: myFormValues["name"],
-                  autofocus: true,
-                  icon: Icons.people),
+                    formProperty: 'name',
+                    formValues: myFormValues,
+                    labelText: 'Solicitante',
+                    hintText: 'Insertar su nombre',
+                    helperText: 'Solo mayusculas',
+                    initialText: myFormValues["name"],
+                    autofocus: true,
+                    icon: Icons.people),
                 CustomInputField(
-                  formProperty: 'reason',
-                  formValues: myFormValues,
-                  labelText: 'Razón',
-                  hintText: 'Insertar la razón',
-                  initialText: myFormValues["reason"],
-                  helperText: '',
-                  icon: Icons.read_more_sharp),
+                    formProperty: 'reason',
+                    formValues: myFormValues,
+                    labelText: 'Razón',
+                    hintText: 'Insertar la razón',
+                    initialText: myFormValues["reason"],
+                    helperText: '',
+                    icon: Icons.read_more_sharp),
                 CustomInputField(
                   formProperty: 'description',
                   formValues: myFormValues,
@@ -88,14 +88,13 @@ class FormScreen extends StatelessWidget {
                   icon: Icons.connect_without_contact_rounded,
                 ),
                 CustomInputField(
-                  formProperty: 'dni',
-                  formValues: myFormValues,
-                  labelText: 'Cedula',
-                  hintText: 'Inserte la cedula',
-                  helperText: '',
-                  initialText: myFormValues["dni"],
-                  icon: Icons.perm_identity
-                ),
+                    formProperty: 'dni',
+                    formValues: myFormValues,
+                    labelText: 'Cedula',
+                    hintText: 'Inserte la cedula',
+                    helperText: '',
+                    initialText: myFormValues["dni"],
+                    icon: Icons.perm_identity),
                 CustomInputField(
                   formProperty: 'phonecontact',
                   formValues: myFormValues,
@@ -120,36 +119,57 @@ class FormScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
                   child: Column(
                     children: [
-                      DropdownButtonFormField < String > (
-
-                        icon: const Icon(Icons.card_travel_outlined,color: AppTheme.primary,),
+                      DropdownButtonFormField<String>(
+                          icon: const Icon(
+                            Icons.card_travel_outlined,
+                            color: AppTheme.icon,
+                          ),
                           items: const [
-                            DropdownMenuItem(value: 'Software', child: Text('Desarrollo de software')),
-                            DropdownMenuItem(value: 'Agronomia', child: Text('Agronomia')),
+                            DropdownMenuItem(
+                                value: 'carrera',
+                                enabled: false,
+                                child: Text('Carrera')),
+                            DropdownMenuItem(
+                                value: 'Software',
+                                child: Text('Desarrollo de software')),
+                            DropdownMenuItem(
+                                value: 'Agronomia', child: Text('Agronomia')),
                           ],
                           value: myFormValues["career"],
                           onChanged: (value) {
                             myFormValues['career'] = value;
                           }),
-                          const SizedBox(height: 9.7),
-                      DropdownButtonFormField < String > (
-
-                        icon: const Icon(Icons.description,color: AppTheme.primary,),
+                      const SizedBox(height: 9.7),
+                      DropdownButtonFormField<String>(
+                          icon: const Icon(
+                            Icons.description,
+                            color: AppTheme.icon,
+                          ),
                           items: const [
-                            DropdownMenuItem(value: 'SIAU', child: Text('SIAU')),
-                            DropdownMenuItem(value: 'SIGA', child: Text('SIGA')),
+                            DropdownMenuItem(
+                                value: 'tipo',
+                                enabled: false,
+                                child: Text('Tipo')),
+                            DropdownMenuItem(
+                                value: 'SIAU', child: Text('SIAU')),
+                            DropdownMenuItem(
+                                value: 'SIGA', child: Text('SIGA')),
                           ],
                           value: myFormValues["type"],
                           onChanged: (value) {
                             myFormValues['type'] = value;
                           }),
-                          const SizedBox(height: 9.7),
-                      DropdownButtonFormField < bool > (
-
-                        icon: const Icon(Icons.disc_full_outlined,color: AppTheme.primary,),
+                      const SizedBox(height: 9.7),
+                      DropdownButtonFormField<bool>(
+                          icon: const Icon(
+                            Icons.disc_full_outlined,
+                            color: AppTheme.icon,
+                          ),
                           items: const [
-                            DropdownMenuItem(value: true, child: Text('activo')),
-                            DropdownMenuItem(value: false, child: Text('desactivo')),
+                            DropdownMenuItem(
+                                value: true, child: Text('activo')),
+                            DropdownMenuItem(
+                                value: false, child: Text('desactivo')),
                           ],
                           value: myFormValues["active"],
                           onChanged: (value) {
@@ -163,17 +183,18 @@ class FormScreen extends StatelessWidget {
                         direction: Axis.horizontal,
                         allowHalfRating: false,
                         itemCount: 4,
-                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 4.0),
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {
-                          myFormValues['scorereply'] =rating;
+                          myFormValues['scorereply'] = rating;
                         },
                       ),
                       const SizedBox(height: 9.7),
-                       FloatingActionButton(
+                      FloatingActionButton(
                         child: const Text('Save'),
                         onPressed: () {
                             
@@ -187,7 +208,8 @@ class FormScreen extends StatelessWidget {
                             const snackBar = SnackBar(
                               content: Text('Solicitud Actualizada'),
                             );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           } else {
                             var pickedDate = DateTime.now();
                             print(pickedDate);
@@ -200,7 +222,8 @@ class FormScreen extends StatelessWidget {
                             const snackBar = SnackBar(
                               content: Text('Solicitud Registrada'),
                             );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           }
                         },
                       )
@@ -209,7 +232,7 @@ class FormScreen extends StatelessWidget {
                 ),
               ]),
             ),
-        ),
-      ));
+          ),
+        ));
   }
 }

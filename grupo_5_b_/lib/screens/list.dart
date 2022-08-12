@@ -22,15 +22,18 @@ class RequestListScreen extends StatelessWidget {
               height: 32,
             ),
             Container(
-                padding: const EdgeInsets.all(8.0), child: const Text('Solicitudes'))
+                padding: const EdgeInsets.all(8.0),
+                child: const Text('Solicitudes'))
           ],
         ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.home),
             // tooltip: 'Comment Icon',
-            onPressed: () {Navigator.pushNamed(context, 'home');},
-          ), 
+            onPressed: () {
+              Navigator.pushNamed(context, 'home');
+            },
+          ),
         ],
       ),
       body: ListView.separated(
@@ -46,7 +49,8 @@ class RequestListScreen extends StatelessWidget {
                     title: Text('Solicitante: ${requestsProvider.requests[index].name}'),
                     subtitle: ListView(
                       children: [
-                        Text('Razon: ${requestsProvider.requests[index].reason}'),
+                        Text(
+                            'Razon: ${requestsProvider.requests[index].reason}'),
                         RatingBar.builder(
                         initialRating: requestsProvider.requests[index].scorereply!.toDouble(),
                         minRating: 0,
@@ -66,7 +70,6 @@ class RequestListScreen extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -76,8 +79,8 @@ class RequestListScreen extends StatelessWidget {
                     },
                     trailing: const Icon(Icons.arrow_circle_right_outlined),
                   ),
-            ),
-          ),
+                ),
+              ),
           separatorBuilder: (_, __) => const Divider(),
           itemCount: requestsProvider.requests.length),
       floatingActionButton: FloatingActionButton(

@@ -38,10 +38,11 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: AppTheme.secondary.withOpacity(0.5),
                           spreadRadius: 5,
                           blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         )
                       ],
                       color: const Color.fromARGB(255, 255, 255, 255),
@@ -54,20 +55,20 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           iconSize: 50.0,
-                          icon: const Icon(Icons.list),
-                          color: AppTheme.primary,
+                          icon: const Icon(Icons.list_rounded),
+                          color: AppTheme.secondary,
                           onPressed: () {
                             Navigator.pushNamed(context, 'request-list');
                           },
                         ),
                         const Text(
-                          "Lista de requerimentos",
+                          "Peticiones",
                           style: TextStyle(fontSize: 18),
                         ),
                         const Padding(
                           padding: EdgeInsets.all(5),
                           child: Text(
-                            "Lista con todos los requerimentos registrados.",
+                            "Listar todas las solicitudes registradas.",
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -84,7 +85,5 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
-
-
   }
 }
