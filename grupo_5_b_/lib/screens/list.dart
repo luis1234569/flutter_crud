@@ -35,7 +35,7 @@ class RequestListScreen extends StatelessWidget {
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => SizedBox(
-            height:125,
+            height:107,
             child: Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
              color: const Color.fromARGB(255, 157, 244, 244), 
@@ -53,13 +53,14 @@ class RequestListScreen extends StatelessWidget {
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 4,
+                        itemSize: 30.0,
                         itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {
-                          print(rating);
+                          // print(rating);
                         },
                       ),
                       ],

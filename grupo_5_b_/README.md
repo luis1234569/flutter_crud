@@ -1,16 +1,45 @@
-# grupo_5_b_
+# grupo 5 del vespertino b
 
-A new Flutter project.
+var pickedDate = DateTime.now();
+String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
 
-## Getting Started
+myFormValues["registerdate"]=formattedDate;
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---------------
+Container(
+            padding: EdgeInsets.all(15),
+            height: MediaQuery.of(context).size.width / 3,
+            child: Center(
+                child: TextField(
+              controller: dateInput,
+              //editing controller of this TextField
+              decoration: const InputDecoration(
+                  icon: Icon(Icons.calendar_today), //icon of text field
+                  labelText: "Enter Date" //label text of field
+                  ),
+              readOnly: true,
+              //set it true, so that user will not able to edit text
+              onTap: () async {
+                DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1950),
+                    //DateTime.now() - not to allow to choose before today.
+                    lastDate: DateTime(2100));
+ 
+                if (pickedDate != null) {
+                  print(
+                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                  String formattedDate =
+                      DateFormat('yyyy-MM-dd').format(pickedDate);
+                  print(
+                      formattedDate); //formatted date output using intl package =>  2021-03-16
+                  setState() {
+                    dateInput =
+                        formattedDate; //set output date to TextField value.
+                  };
+                } else {}
+              },
+            ))),
+            ___________________________________________-

@@ -4,6 +4,7 @@ import 'package:grupo_5_b_/models/request_model.dart';
 import 'package:grupo_5_b_/providers/providers.dart';
 import 'package:grupo_5_b_/themes/theme.dart';
 import 'package:grupo_5_b_/widgets/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class FormScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class FormScreen extends StatelessWidget {
       'registerdate': request?.registerdate.toString() ?? "",
       'career': request?.career.toString() ?? "Software",
       'phonecontact': request?.phonecontact.toString() ?? "",
-      'scorereply': request?.scorereply ?? 1,
+      'scorereply': request?.scorereply ?? 0,
       'active': request?.active ?? false,
     };
     final requestProvider = Provider.of < RequestsProvider > (context);
@@ -104,14 +105,16 @@ class FormScreen extends StatelessWidget {
                   initialText: myFormValues["phonecontact"],
                   icon: Icons.card_travel_outlined),
 
-                CustomInputField(
-                  formProperty: 'registerdate',
-                  formValues: myFormValues,
-                  labelText: 'Fecha',
-                  hintText: 'YY-MM-DD',
-                  helperText: 'YY-MM-DD',
-                  initialText: myFormValues["registerdate"],
-                  icon: Icons.calendar_month),
+                // CustomInputField(
+                //   formProperty: 'registerdate',
+                //   formValues: myFormValues,
+                //   labelText: 'Fecha',
+                //   hintText: 'YY-MM-DD',
+                //   helperText: 'YY-MM-DD',
+                //   initialText: myFormValues["registerdate"],
+                //   icon: Icons.calendar_month),
+
+                
 
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
@@ -173,6 +176,7 @@ class FormScreen extends StatelessWidget {
                        FloatingActionButton(
                         child: const Text('Save'),
                         onPressed: () {
+                            
                           // setState(){};
                           Navigator.pushNamed(
                             context,
@@ -185,6 +189,13 @@ class FormScreen extends StatelessWidget {
                             );
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           } else {
+                            var pickedDate = DateTime.now();
+                            print(pickedDate);
+                            String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                            print(formattedDate);
+                            myFormValues["registerdate"]=formattedDate;
+                            print(myFormValues["registerdate"]);
+
                             requestProvider.createRequest(myFormValues);
                             const snackBar = SnackBar(
                               content: Text('Solicitud Registrada'),
