@@ -22,6 +22,7 @@ class RequestsProvider extends ChangeNotifier {
 
   Future<List<Request>> getRequests() async {
     var url = Uri.http(_baseUrl, 'request/list');
+    // http://localhost:8080/request/list
     var response = await http.get(url);
     List<dynamic> requestsList = json.decode(response.body);
     requestsList.forEach((request) {
@@ -37,6 +38,8 @@ class RequestsProvider extends ChangeNotifier {
     var response = await http.post(url,
         body: jsonEncode(request),
         headers: {"Content-Type": "application/json"});
+    requests = [...requests, Request.fromJson(response.body)];
+    notifyListeners();
   }
 
   Future updateRequest(Map<String, dynamic> request) async {
@@ -44,10 +47,18 @@ class RequestsProvider extends ChangeNotifier {
     var response = await http.put(url,
         body: jsonEncode(request),
         headers: {"Content-Type": "application/json"});
+    Request updatedRequest = Request.fromJson(response.body);
+
+    requests[
+            requests.indexWhere((element) => element.id == updatedRequest.id)] =
+        updatedRequest;
+    notifyListeners();
   }
 
   Future deleteRequest(String id) async {
     var url = Uri.http(_baseUrl, 'request/$id');
     var response = await http.delete(url);
+    requests.removeAt(
+        requests.indexWhere((element) => element.id == int.parse(id)));
   }
 }

@@ -4,7 +4,6 @@ import 'package:grupo_5_b_/models/request_model.dart';
 import 'package:grupo_5_b_/providers/providers.dart';
 import 'package:grupo_5_b_/themes/theme.dart';
 import 'package:grupo_5_b_/widgets/widgets.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class FormScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class FormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> myFormValues = {
-      "id": request?.id.toString() ?? 0,
+      "id": request?.id ?? 0,
       'name': request?.name.toString() ?? "",
       'dni': request?.dni.toString() ?? "",
       'reason': request?.reason.toString() ?? "",
@@ -203,6 +202,7 @@ class FormScreen extends StatelessWidget {
                             'home',
                           );
                           if (myFormValues["id"] != 0) {
+                            print(myFormValues);
                             requestProvider.updateRequest(myFormValues);
                             const snackBar = SnackBar(
                               backgroundColor: Color.fromARGB(237, 243, 247, 2),
@@ -212,11 +212,6 @@ class FormScreen extends StatelessWidget {
                                 .showSnackBar(snackBar);
                           } else {
                             requestProvider.createRequest(myFormValues);
-                            requestProvider.requests = [
-                              ...requestProvider.requests,
-                              Request.fromMap(myFormValues)
-                            ];
-                            print(requestProvider.request);
                             const snackBar = SnackBar(
                               backgroundColor: Color.fromARGB(225, 51, 255, 0),
                               content: Text('Solicitud Registrada'),
