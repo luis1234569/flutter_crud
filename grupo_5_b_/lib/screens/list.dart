@@ -23,7 +23,7 @@ class RequestListScreen extends StatelessWidget {
             ),
             Container(
                 padding: const EdgeInsets.all(8.0),
-                child: const Text('Solicitudes'))
+                child: const Text('Solicitudes')),
           ],
         ),
         actions: <Widget>[
@@ -38,14 +38,14 @@ class RequestListScreen extends StatelessWidget {
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => SizedBox(
-            height:107,
+            height:125,
             child: Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-             color: const Color.fromARGB(255, 157, 244, 244), 
+             color: Color.fromARGB(178, 4, 57, 233), 
             margin: const EdgeInsets.all(5),
             elevation: 10,
               child: ListTile(
-                    leading: const Icon(Icons.document_scanner, color: AppTheme.primary),
+                    leading: const Icon(Icons.document_scanner_sharp, color: Color.fromARGB(255, 255, 255, 255)),
                     title: Text('Solicitante: ${requestsProvider.requests[index].name}'),
                     subtitle: ListView(
                       children: [
@@ -56,48 +56,49 @@ class RequestListScreen extends StatelessWidget {
                         minRating: 0,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
-                        itemCount: 4,
-                        itemSize: 30.0,
+                        itemCount: 4 ,
+                        itemSize: 25.0,
                         itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {
-                          // print(rating);
                         },
                       ),
-                      // ElevatedButton(
-                      //   style: ElevatedButton.styleFrom(
-                      //   primary: Colors.red, // background
-                      //   onPrimary: Colors.white // foreground
-                      // ),
-                      //   onPressed: (){
-                      //     Navigator.pushNamed(
-                      //       context,
-                      //       'home',
-                      //     );
-                      //     var id = requestsProvider.requests[index].id.toString();
-                      //     requestsProvider.deleteRequest(id);
-                      //     print(id);
-                      //   },
-                      //   child: const Icon(
-                      //     Icons.delete_forever_outlined,
-                      //     ),
-                      //   )
-                      IconButton(
-                        color: Color.fromARGB(255, 255, 0, 0),
-                          icon: Icon(Icons.delete_forever_rounded),
-                          onPressed: (){
-                          Navigator.pushNamed(
-                            context,
-                            'home',
-                          );
-                          var id = requestsProvider.requests[index].id.toString();
-                          requestsProvider.deleteRequest(id);
-                          print(id);
-                        },
-                        )
+                      
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Ink(
+                          decoration: const ShapeDecoration(
+                            color: Color.fromARGB(216, 255, 9, 9),
+                              shape:  CircleBorder(),
+                        ),
+                          child: IconButton(
+                            icon: const Icon(Icons.delete),
+                              color: Colors.white,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              'home',
+                            );
+                            const snackBar = SnackBar(
+                              backgroundColor: Color.fromARGB(220, 255, 0, 0),
+                              content: Text('Eliminado Exitosamente'),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                           var id = requestsProvider.requests[index].id.toString();
+                             requestsProvider.deleteRequest(id);
+                              print(id);
+                          },
+                          ),
+                        ),
+                      ],
+                    ),
+
+
                       ],
                     ),
                     onTap: () {
@@ -108,17 +109,25 @@ class RequestListScreen extends StatelessWidget {
                                     request: requestsProvider.requests[index],
                                   )));
                     },
-                    trailing: const Icon(Icons.arrow_circle_right_outlined),
+                    //trailing: const Icon(Icons.arrow_circle_right_outlined),
                   ),
                 ),
               ),
           separatorBuilder: (_, __) => const Divider(),
-          itemCount: requestsProvider.requests.length),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, 'request-form');
-        },
+          itemCount: requestsProvider.requests.length),   
+      floatingActionButton: 
+      Row(
+         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children:
+         [
+          FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.pushNamed(context, 'request-form');
+            },
+          ),
+        ],
       ),
     );
   }

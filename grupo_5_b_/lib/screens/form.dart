@@ -195,7 +195,7 @@ class FormScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 9.7),
                       FloatingActionButton(
-                        child: const Text('Save'),
+                        child:  const Icon(Icons.save, color: Color.fromARGB(255, 255, 255, 255), ),
                         onPressed: () {
                             
                           // setState(){};
@@ -206,20 +206,15 @@ class FormScreen extends StatelessWidget {
                           if (myFormValues["id"] != "0") {
                             requestProvider.updateRequest(myFormValues);
                             const snackBar = SnackBar(
+                              backgroundColor: Color.fromARGB(237, 243, 247, 2),
                               content: Text('Solicitud Actualizada'),
                             );
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           } else {
-                            // var pickedDate = DateTime.now();
-                            // print(pickedDate);
-                            // String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                            // print(formattedDate);
-                            // myFormValues["registerdate"]=formattedDate;
-                            // print(myFormValues["registerdate"]);
-
                             requestProvider.createRequest(myFormValues);
                             const snackBar = SnackBar(
+                              backgroundColor: Color.fromARGB(225, 51, 255, 0),
                               content: Text('Solicitud Registrada'),
                             );
                             ScaffoldMessenger.of(context)
