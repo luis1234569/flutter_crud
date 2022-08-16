@@ -67,6 +67,37 @@ class RequestListScreen extends StatelessWidget {
                           // print(rating);
                         },
                       ),
+                      // ElevatedButton(
+                      //   style: ElevatedButton.styleFrom(
+                      //   primary: Colors.red, // background
+                      //   onPrimary: Colors.white // foreground
+                      // ),
+                      //   onPressed: (){
+                      //     Navigator.pushNamed(
+                      //       context,
+                      //       'home',
+                      //     );
+                      //     var id = requestsProvider.requests[index].id.toString();
+                      //     requestsProvider.deleteRequest(id);
+                      //     print(id);
+                      //   },
+                      //   child: const Icon(
+                      //     Icons.delete_forever_outlined,
+                      //     ),
+                      //   )
+                      IconButton(
+                        color: Color.fromARGB(255, 255, 0, 0),
+                          icon: Icon(Icons.delete_forever_rounded),
+                          onPressed: (){
+                          Navigator.pushNamed(
+                            context,
+                            'home',
+                          );
+                          var id = requestsProvider.requests[index].id.toString();
+                          requestsProvider.deleteRequest(id);
+                          print(id);
+                        },
+                        )
                       ],
                     ),
                     onTap: () {

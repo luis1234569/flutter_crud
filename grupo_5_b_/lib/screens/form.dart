@@ -104,14 +104,14 @@ class FormScreen extends StatelessWidget {
                   initialText: myFormValues["phonecontact"],
                   icon: Icons.card_travel_outlined),
 
-                // CustomInputField(
-                //   formProperty: 'registerdate',
-                //   formValues: myFormValues,
-                //   labelText: 'Fecha',
-                //   hintText: 'YY-MM-DD',
-                //   helperText: 'YY-MM-DD',
-                //   initialText: myFormValues["registerdate"],
-                //   icon: Icons.calendar_month),
+                CustomInputField(
+                  formProperty: 'registerdate',
+                  formValues: myFormValues,
+                  labelText: 'Fecha',
+                  hintText: 'YY-MM-DD',
+                  helperText: 'YY-MM-DD',
+                  initialText: myFormValues["registerdate"],
+                  icon: Icons.calendar_month),
 
                 
 
@@ -211,12 +211,12 @@ class FormScreen extends StatelessWidget {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           } else {
-                            var pickedDate = DateTime.now();
-                            print(pickedDate);
-                            String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                            print(formattedDate);
-                            myFormValues["registerdate"]=formattedDate;
-                            print(myFormValues["registerdate"]);
+                            // var pickedDate = DateTime.now();
+                            // print(pickedDate);
+                            // String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                            // print(formattedDate);
+                            // myFormValues["registerdate"]=formattedDate;
+                            // print(myFormValues["registerdate"]);
 
                             requestProvider.createRequest(myFormValues);
                             const snackBar = SnackBar(

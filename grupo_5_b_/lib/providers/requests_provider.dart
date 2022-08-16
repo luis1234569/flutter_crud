@@ -45,5 +45,14 @@ class RequestsProvider extends ChangeNotifier {
         headers: {"Content-Type": "application/json"});
   }
 
+  Future deleteRequest(String id) async {
+    var url = Uri.http(_baseUrl, 'request/$id');
+    var response = await http.delete(url,
+        body: jsonEncode(request),
+        headers: {"Content-Type": "application/json"});
+  }
+
+
+
 
 }
