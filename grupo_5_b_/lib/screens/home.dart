@@ -41,16 +41,16 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           BoxShadow(
-                            color: AppTheme.secondary.withOpacity(0.5),
+                            color: Color.fromARGB(255, 8, 0, 255).withOpacity(0.5),
                             spreadRadius: 5,
                             blurRadius: 7,
                             offset:
                                 const Offset(0, 3), // changes position of shadow
                           )
                         ],
-                        color: const Color.fromARGB(255, 255, 255, 255),
+                        color: Color.fromARGB(255, 240, 250, 248),
                         border: Border.all(
-                            color: const Color.fromARGB(255, 107, 106, 106))),
+                            color: Color.fromARGB(255, 57, 91, 100))),
                     padding: const EdgeInsets.all(10),
                     child: SizedBox(
                       width: 190,
@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                           IconButton(
                             iconSize: 50.0,
                             icon: const Icon(Icons.create_new_folder),
-                            color: AppTheme.secondary,
+                            color: Color.fromARGB(255, 57, 91, 100),
                             onPressed: () {
                               Navigator.pushNamed(context,'request-form');
                             },
@@ -89,16 +89,16 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
-                          color: AppTheme.secondary.withOpacity(0.5),
+                          color: Color.fromARGB(255, 8, 0, 255).withOpacity(0.5),
                           spreadRadius: 5,
                           blurRadius: 7,
                           offset:
                               const Offset(0, 3), // changes position of shadow
                         )
                       ],
-                      color: const Color.fromARGB(255, 255, 255, 255),
+                      color: Color.fromARGB(255, 231, 246, 242),
                       border: Border.all(
-                          color: const Color.fromARGB(255, 107, 106, 106))),
+                          color: const Color.fromARGB(255, 57, 91, 100))),
                   padding: const EdgeInsets.all(10),
                   child: SizedBox(
                     width: 190,
@@ -106,8 +106,8 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           iconSize: 50.0,
-                          icon: const Icon(Icons.list_rounded),
-                          color: AppTheme.secondary,
+                          icon: const Icon(Icons.list_alt_rounded),
+                          color: Color.fromARGB(255, 57, 91, 100),
                           onPressed: () {
                             Navigator.pushNamed(context, 'request-list');
                           },

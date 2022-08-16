@@ -53,12 +53,12 @@ class _RequestListScreenState extends State<RequestListScreen> {
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  color: Color.fromARGB(139, 28, 79, 247),
+                  color: Color.fromARGB(255, 231, 246, 242),
                   margin: const EdgeInsets.all(5),
                   elevation: 10,
                   child: ListTile(
                     leading: const Icon(Icons.document_scanner_sharp,
-                        color: Color.fromARGB(255, 255, 255, 255)),
+                        color: Color.fromARGB(255, 57, 91, 100)),
                     title: Text(
                         'Solicitante: ${requestsProvider.requests[index].name}'),
                     subtitle: ListView(
