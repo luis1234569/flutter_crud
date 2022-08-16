@@ -41,7 +41,7 @@ class RequestListScreen extends StatelessWidget {
             height:125,
             child: Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-             color: Color.fromARGB(178, 4, 57, 233), 
+             color: Color.fromARGB(139, 28, 79, 247), 
             margin: const EdgeInsets.all(5),
             elevation: 10,
               child: ListTile(

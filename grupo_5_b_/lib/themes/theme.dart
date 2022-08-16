@@ -8,13 +8,13 @@ class AppTheme {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: primary,
-    scaffoldBackgroundColor: Color.fromARGB(207, 11, 49, 218),
+    scaffoldBackgroundColor: Color.fromARGB(144, 11, 49, 218),
     appBarTheme: const AppBarTheme(color: primary, elevation: 10),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Color.fromARGB(255, 0, 56, 50),
       foregroundColor: Colors.greenAccent,
       hoverColor: Color.fromARGB(255, 48, 145, 92),
-      splashColor: Color.fromARGB(132, 28, 86, 248),
+      splashColor: Color.fromARGB(132, 55, 105, 243),
     ),
     inputDecorationTheme: const InputDecorationTheme(
         floatingLabelStyle: TextStyle(color: icon),
