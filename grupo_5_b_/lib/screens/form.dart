@@ -17,7 +17,7 @@ class FormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> myFormValues = {
-      "id": request?.id.toString() ?? "0",
+      "id": request?.id.toString() ?? 0,
       'name': request?.name.toString() ?? "",
       'dni': request?.dni.toString() ?? "",
       'reason': request?.reason.toString() ?? "",
@@ -96,25 +96,21 @@ class FormScreen extends StatelessWidget {
                     initialText: myFormValues["dni"],
                     icon: Icons.perm_identity),
                 CustomInputField(
-                  formProperty: 'phonecontact',
-                  formValues: myFormValues,
-                  labelText: 'Contacto',
-                  hintText: 'Insertar telefono de contacto',
-                  helperText: '',
-                  initialText: myFormValues["phonecontact"],
-                  icon: Icons.card_travel_outlined),
-
+                    formProperty: 'phonecontact',
+                    formValues: myFormValues,
+                    labelText: 'Contacto',
+                    hintText: 'Insertar telefono de contacto',
+                    helperText: '',
+                    initialText: myFormValues["phonecontact"],
+                    icon: Icons.card_travel_outlined),
                 CustomInputField(
-                  formProperty: 'registerdate',
-                  formValues: myFormValues,
-                  labelText: 'Fecha',
-                  hintText: 'YY-MM-DD',
-                  helperText: 'YY-MM-DD',
-                  initialText: myFormValues["registerdate"],
-                  icon: Icons.calendar_month),
-
-                
-
+                    formProperty: 'registerdate',
+                    formValues: myFormValues,
+                    labelText: 'Fecha',
+                    hintText: 'YY-MM-DD',
+                    helperText: 'YY-MM-DD',
+                    initialText: myFormValues["registerdate"],
+                    icon: Icons.calendar_month),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
                   child: Column(
@@ -138,6 +134,7 @@ class FormScreen extends StatelessWidget {
                           value: myFormValues["career"],
                           onChanged: (value) {
                             myFormValues['career'] = value;
+                            print(myFormValues);
                           }),
                       const SizedBox(height: 9.7),
                       DropdownButtonFormField<String>(
@@ -195,15 +192,17 @@ class FormScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 9.7),
                       FloatingActionButton(
-                        child:  const Icon(Icons.save, color: Color.fromARGB(255, 255, 255, 255), ),
+                        child: const Icon(
+                          Icons.save,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
                         onPressed: () {
-                            
                           // setState(){};
                           Navigator.pushNamed(
                             context,
                             'home',
                           );
-                          if (myFormValues["id"] != "0") {
+                          if (myFormValues["id"] != 0) {
                             requestProvider.updateRequest(myFormValues);
                             const snackBar = SnackBar(
                               backgroundColor: Color.fromARGB(237, 243, 247, 2),
@@ -213,6 +212,11 @@ class FormScreen extends StatelessWidget {
                                 .showSnackBar(snackBar);
                           } else {
                             requestProvider.createRequest(myFormValues);
+                            requestProvider.requests = [
+                              ...requestProvider.requests,
+                              Request.fromMap(myFormValues)
+                            ];
+                            print(requestProvider.request);
                             const snackBar = SnackBar(
                               backgroundColor: Color.fromARGB(225, 51, 255, 0),
                               content: Text('Solicitud Registrada'),

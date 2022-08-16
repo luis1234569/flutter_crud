@@ -5,7 +5,7 @@ import 'package:grupo_5_b_/models/models.dart';
 
 class RequestsProvider extends ChangeNotifier {
   final String _baseUrl = 'localhost:8080';
-  final List<Request> requests = [];
+  List<Request> requests = [];
   Request request = Request(
       name: '',
       dni: '',
@@ -28,6 +28,7 @@ class RequestsProvider extends ChangeNotifier {
       final requestTemp = Request.fromMap(request);
       requests.add(requestTemp);
     });
+    notifyListeners();
     return requests;
   }
 
@@ -47,11 +48,6 @@ class RequestsProvider extends ChangeNotifier {
 
   Future deleteRequest(String id) async {
     var url = Uri.http(_baseUrl, 'request/$id');
-    var response = await http.delete(url
-    );
+    var response = await http.delete(url);
   }
-
-
-
-
 }
