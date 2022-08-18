@@ -5,11 +5,11 @@ import 'package:grupo_5_b_/models/models.dart';
 
 class RequestsProvider extends ChangeNotifier {
   final String _baseUrl = 'localhost:8080';
-  List<Request> requests = [];
+  List<Request> requests = []; //
   Request request = Request(
       name: '',
       dni: '',
-      career: '',
+      career: '', 
       type: '',
       reason: '',
       description: '',
@@ -19,10 +19,9 @@ class RequestsProvider extends ChangeNotifier {
   RequestsProvider() {
     getRequests();
   }
-
+  // Listar o leer 
   Future<List<Request>> getRequests() async {
     var url = Uri.http(_baseUrl, 'request/list');
-    // http://localhost:8080/request/list
     var response = await http.get(url);
     List<dynamic> requestsList = json.decode(response.body);
     requestsList.forEach((request) {

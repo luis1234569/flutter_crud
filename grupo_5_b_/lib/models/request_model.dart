@@ -1,6 +1,6 @@
 import 'dart:convert';
-
-class Request {
+//
+class Request { 
   Request({
     this.id,
     required this.name,
@@ -30,10 +30,10 @@ class Request {
   factory Request.fromJson(String str) => Request.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
-
+//
   factory Request.fromMap(Map<String, dynamic> json) => Request(
         id: json["id"],
-        name: json["name"],
+        name: json["name"], 
         dni: json["dni"],
         career: json["career"],
         type: json["type"],

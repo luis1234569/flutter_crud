@@ -9,7 +9,7 @@
     dni character varying(100),
     career character varying(100),
     type character varying(100),
-    reason character varying(100),
+    reason character varying(100), 
     description character varying(100),
     phonecontact character varying(100),
     registerdate date,

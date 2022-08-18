@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           BoxShadow(
-                            color: Color.fromARGB(255, 8, 0, 255).withOpacity(0.5),
+                            color: Color.fromARGB(255, 255, 0, 0).withOpacity(0.5),
                             spreadRadius: 5,
                             blurRadius: 7,
                             offset:
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           IconButton(
                             iconSize: 50.0,
-                            icon: const Icon(Icons.create_new_folder),
+                            icon: const Icon(Icons.list_alt_rounded),
                             color: Color.fromARGB(255, 57, 91, 100),
                             onPressed: () {
                               Navigator.pushNamed(context,'request-form');
@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromARGB(255, 8, 0, 255).withOpacity(0.5),
+                          color: Color.fromARGB(255, 255, 0, 0).withOpacity(0.5),
                           spreadRadius: 5,
                           blurRadius: 7,
                           offset:
@@ -106,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           iconSize: 50.0,
-                          icon: const Icon(Icons.list_alt_rounded),
+                          icon: const Icon(Icons.folder_special),
                           color: Color.fromARGB(255, 57, 91, 100),
                           onPressed: () {
                             Navigator.pushNamed(context, 'request-list');

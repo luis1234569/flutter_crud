@@ -13,4 +13,4 @@ class MenuOption {
     required this.name,
     required this.screen
   });
-}
+} 

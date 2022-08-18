@@ -87,7 +87,7 @@ class _RequestListScreenState extends State<RequestListScreen> {
                           children: [
                             Ink(
                               decoration: const ShapeDecoration(
-                                color: Color.fromARGB(216, 255, 9, 9),
+                                color: Color.fromARGB(255, 172, 3, 3),
                                 shape: CircleBorder(),
                               ),
                               child: IconButton(
@@ -96,11 +96,11 @@ class _RequestListScreenState extends State<RequestListScreen> {
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,
-                                    'home',
+                                    'request-list',
                                   );
                                   const snackBar = SnackBar(
                                     backgroundColor:
-                                        Color.fromARGB(220, 255, 0, 0),
+                                        Color.fromARGB(255, 172, 3, 3),
                                     content: Text('Eliminado Exitosamente'),
                                   );
                                   ScaffoldMessenger.of(context)
